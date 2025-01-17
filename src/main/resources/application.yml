@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: store-app
+
+data-provider:
+  url: https://fakestoreapi.com
+  resources:
+
+
