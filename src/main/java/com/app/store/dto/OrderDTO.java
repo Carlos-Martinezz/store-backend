@@ -1,5 +1,7 @@
 package com.app.store.dto;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,6 +18,7 @@ public class OrderDTO {
     /**
      * Customer database identifier
      */
+    @NotNull(message = "customerId field is required")
     private Long customerId;
 
     /**
@@ -36,6 +39,8 @@ public class OrderDTO {
     /**
      * List of ordered products
      */
+    @NotNull(message = "items field is required")
+    @Valid
     private List<OrderItem> items;
 
 }

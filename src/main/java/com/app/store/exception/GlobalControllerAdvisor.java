@@ -5,6 +5,7 @@ import com.app.store.common.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -25,7 +26,6 @@ public class GlobalControllerAdvisor {
      * @return A server error and detailed error information.
      */
     @ExceptionHandler(TechnicalException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Response<String>> handleTechnicalException(TechnicalException ex) {
         UUID uuid = UUID.randomUUID();
         log.info("Advisor traceId: {}", uuid);
@@ -33,13 +33,39 @@ public class GlobalControllerAdvisor {
                 .data(null)
                 .errors(List.of(
                         ErrorDetail.builder()
-                                .errorCode(500)
+                                .errorCode(ex.getErrorCode())
                                 .message(ex.getMessage())
                                 .traceId(uuid.toString())
                                 .build()
                 ))
                 .build();
-        return  ResponseEntity.internalServerError().body(response);
+        return  ResponseEntity.status(ex.getErrorCode()).body(response);
     }
+
+    /**
+     *
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Response<String>> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
+        UUID uuid = UUID.randomUUID();
+        log.info("Advisor traceId: {}", uuid);
+        Response response = Response.<String>builder()
+                .data(null)
+                .errors(
+                        ex.getBindingResult()
+                                .getFieldErrors()
+                                .stream()
+                                .map(fieldError -> ErrorDetail.builder()
+                                        .errorCode(400)
+                                        .message(String.format("Field '%s': %s", fieldError.getField(), fieldError.getDefaultMessage()))
+                                        .traceId(uuid.toString())
+                                        .build()
+                                )
+                                .toList()
+                )
+                .build();
+        return  ResponseEntity.badRequest().body(response);
+    }
+
 
 }

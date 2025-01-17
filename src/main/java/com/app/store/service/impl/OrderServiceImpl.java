@@ -9,9 +9,9 @@ import com.app.store.exception.TechnicalException;
 import com.app.store.repository.OrderRepository;
 import com.app.store.service.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +29,9 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public CompleteOrderDTO processOrder(OrderDTO order) {
+        if(order.getItems().size() < 1) {
+            throw new TechnicalException("We were unable to process your order. We did not find products in it.", HttpStatus.BAD_REQUEST.value());
+        }
 
         double totalAmount = order.getItems().stream()
                 .mapToDouble(item -> item.getPrice())
@@ -55,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
                     .build();
             return storedOrder;
         } else {
-            throw new TechnicalException("We couldn't save your order, please try again in a few minutes");
+            throw new TechnicalException("We couldn't save your order, please try again in a few minutes", HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
 
     }
