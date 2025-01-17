@@ -13,7 +13,7 @@ import java.util.List;
 @FeignClient(name = "fakeStoreClient", url = "${data-provider.url}")
 public interface FakeStoreFeignClient {
 
-    @GetMapping("/products")
+    @GetMapping("${data-provider.resources.get-all-products}")
     List<ProductDTO> getProducts();
 
 }

@@ -17,5 +17,6 @@ spring:
 data-provider:
   url: https://fakestoreapi.com
   resources:
+    get-all-products: /products
 
 

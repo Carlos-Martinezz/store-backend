@@ -3,7 +3,6 @@ package com.app.store.controller;
 import com.app.store.common.Response;
 import com.app.store.dto.CompleteOrderDTO;
 import com.app.store.dto.OrderDTO;
-import com.app.store.dto.ProductDTO;
 import com.app.store.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

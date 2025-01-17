@@ -1,6 +1,7 @@
 package com.app.store.service.impl;
 
 import com.app.store.constant.OrderStatus;
+import com.app.store.constant.PaymentStatus;
 import com.app.store.dto.CompleteOrderDTO;
 import com.app.store.dto.OrderDTO;
 import com.app.store.dto.OrderItem;
@@ -29,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public CompleteOrderDTO processOrder(OrderDTO order) {
+
         if(order.getItems().size() < 1) {
             throw new TechnicalException("We were unable to process your order. We did not find products in it.", HttpStatus.BAD_REQUEST.value());
         }
@@ -42,6 +44,7 @@ public class OrderServiceImpl implements OrderService {
                      .customerId(order.getCustomerId())
                      .totalAmount(totalAmount)
                      .status(OrderStatus.PROCESSED.name())
+                     .paymentStatus(PaymentStatus.NO_PAID.name())
                      .items(this.joinItemId(order.getItems()))
                      .build()
         );
@@ -58,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
                     .build();
             return storedOrder;
         } else {
-            throw new TechnicalException("We couldn't save your order, please try again in a few minutes", HttpStatus.INTERNAL_SERVER_ERROR.value());
+            throw new TechnicalException("We couldn't save your order, please try again in a few minutes.", HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
 
     }

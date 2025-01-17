@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Builder
 @Entity
-@Table(name = "orders")
+@Table(name = "order")
 public class Order {
 
     /**
@@ -40,5 +40,10 @@ public class Order {
      * Order items
      */
     private String items;
+
+    /**
+     * Order payment status
+     */
+    private String paymentStatus;
 
 }
