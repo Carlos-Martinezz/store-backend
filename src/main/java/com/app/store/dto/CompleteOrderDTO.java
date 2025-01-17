@@ -11,7 +11,12 @@ import java.util.List;
  */
 @Data
 @Builder
-public class OrderDTO {
+public class CompleteOrderDTO {
+
+    /**
+     * Order database id
+     */
+    private Long id;
 
     /**
      * Customer database identifier
@@ -19,23 +24,23 @@ public class OrderDTO {
     private Long customerId;
 
     /**
-     * Customer full name
+     * List of product ids
      */
-    private String customerName;
+    private String items;
 
     /**
-     * Customer principal email
+     * Total amount to pay
      */
-    private String customerEmail;
+    private double totalAmount;
 
     /**
-     * Customer complete address
+     * Order status
      */
-    private String customerAddress;
+    private String status;
 
     /**
-     * List of ordered products
+     * Optional message
      */
-    private List<OrderItem> items;
+    private String message;
 
 }

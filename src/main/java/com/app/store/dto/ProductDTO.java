@@ -25,7 +25,7 @@ public class ProductDTO {
     /**
      * Unit price
      */
-    private String price;
+    private double price;
 
     /**
      * Assigned category

@@ -1,14 +1,14 @@
 package com.app.store.controller;
 
 import com.app.store.common.Response;
+import com.app.store.dto.CompleteOrderDTO;
 import com.app.store.dto.OrderDTO;
 import com.app.store.dto.ProductDTO;
+import com.app.store.service.OrderService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,13 +20,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/orders")
 @AllArgsConstructor
+@Slf4j
 public class OrderController {
 
+    private final OrderService orderService;
+
     @GetMapping("/create")
-    public ResponseEntity<Response<List<ProductDTO>>> createOrder(@RequestBody OrderDTO order) {
+    public ResponseEntity<Response<CompleteOrderDTO>> createOrder(@RequestHeader(required = true) String traceId, @RequestBody OrderDTO order) {
+        log.info("Received: {}", order);
+        log.info("[createOrder] - traceId: {}", traceId);
         return ResponseEntity.ok(
-                Response.<List<ProductDTO>>builder()
-                        .data(this.storeService.getAll())
+                Response.<CompleteOrderDTO>builder()
+                        .data(this.orderService.processOrder(order))
                         .build()
         );
     }

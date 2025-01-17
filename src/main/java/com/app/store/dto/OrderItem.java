@@ -1,8 +1,13 @@
 package com.app.store.dto;
 
+import lombok.Builder;
+import lombok.Data;
+
 /**
  * Detail of an order item or product
  */
+@Data
+@Builder
 public class OrderItem {
 
     /**
@@ -19,21 +24,5 @@ public class OrderItem {
      * Unit price
      */
     private double price;
-
-    /** Complementary information **/
-    /**
-     * Total amount to pay
-     */
-    private double totalAmount;
-
-    /**
-     * Order status
-     */
-    private String status;
-
-    /**
-     * Optional message
-     */
-    private String message;
 
 }

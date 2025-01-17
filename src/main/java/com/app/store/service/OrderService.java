@@ -1,5 +1,6 @@
 package com.app.store.service;
 
+import com.app.store.dto.CompleteOrderDTO;
 import com.app.store.dto.OrderDTO;
 
 /**
@@ -10,6 +11,9 @@ public interface OrderService {
 
     /**
      * Process and store an order
+     *
+     * @param order Represents the complete detail of an order.
+     * @return OrderDTO An order processed
      */
-    OrderDTO processOrder(OrderDTO order);
+    CompleteOrderDTO processOrder(OrderDTO order);
 }
