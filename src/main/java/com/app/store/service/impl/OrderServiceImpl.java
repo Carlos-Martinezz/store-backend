@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
         );
 
         CompleteOrderDTO storedOrder;
-        if(savedOrder == null) {
+        if(savedOrder != null) {
             storedOrder = CompleteOrderDTO.builder()
                     .id(savedOrder.getId())
                     .customerId(savedOrder.getCustomerId())
@@ -58,12 +58,39 @@ public class OrderServiceImpl implements OrderService {
                     .totalAmount(savedOrder.getTotalAmount())
                     .status(savedOrder.getStatus())
                     .message("Your order has been processed!")
+                    .paymentStatus(savedOrder.getPaymentStatus())
+                    .createdDate(savedOrder.getCreatedDate())
                     .build();
             return storedOrder;
         } else {
             throw new TechnicalException("We couldn't save your order, please try again in a few minutes.", HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
 
+    }
+
+    /**
+     * Get orders by customer database id
+     *
+     * @param customerId Valid database identifier
+     * @return List<OrderDTO> List of customer orders
+     */
+    @Override
+    public List<CompleteOrderDTO> getOrdersByCustomerId(Long customerId) {
+        List<Order> orders = this.orderRepository.findByCustomerId(customerId);
+        if (orders.isEmpty()) {
+            throw new TechnicalException("We did not find any orders associated with the client provided.", HttpStatus.NOT_FOUND.value());
+        }
+        return orders.stream()
+                .map(order -> CompleteOrderDTO.builder()
+                        .id(order.getId())
+                        .customerId(order.getCustomerId())
+                        .items(null)
+                        .totalAmount(order.getTotalAmount())
+                        .status(order.getStatus())
+                        .paymentStatus(order.getPaymentStatus())
+                        .createdDate(order.getCreatedDate())
+                        .build())
+                .collect(Collectors.toList());
     }
 
     /**

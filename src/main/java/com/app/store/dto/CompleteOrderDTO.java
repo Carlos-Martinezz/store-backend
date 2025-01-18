@@ -3,6 +3,7 @@ package com.app.store.dto;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,5 +43,15 @@ public class CompleteOrderDTO {
      * Optional message
      */
     private String message;
+
+    /**
+     * Payment status
+     */
+    private String paymentStatus;
+
+    /**
+     * Created date
+     */
+    private Date createdDate;
 
 }

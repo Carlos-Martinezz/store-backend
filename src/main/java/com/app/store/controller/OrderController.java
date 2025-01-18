@@ -26,13 +26,24 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @GetMapping("/create")
+    @PostMapping("/create")
     public ResponseEntity<Response<CompleteOrderDTO>> createOrder(@RequestHeader(required = true) String traceId, @Valid @RequestBody @Validated OrderDTO order) {
-        log.info("Received: {}", order);
+        log.info("Order received: {}", order);
         log.info("[createOrder] - traceId: {}", traceId);
         return ResponseEntity.ok(
                 Response.<CompleteOrderDTO>builder()
                         .data(this.orderService.processOrder(order))
+                        .build()
+        );
+    }
+
+    @GetMapping("/{customerId}")
+    public ResponseEntity<Response<List<CompleteOrderDTO>>> getOrdersByCustomerId(@RequestHeader(required = true) String traceId, @PathVariable Long customerId) {
+        log.info("customerId received: {}", customerId);
+        log.info("[createOrder] - traceId: {}", traceId);
+        return ResponseEntity.ok(
+                Response.<List<CompleteOrderDTO>>builder()
+                        .data(this.orderService.getOrdersByCustomerId(customerId))
                         .build()
         );
     }

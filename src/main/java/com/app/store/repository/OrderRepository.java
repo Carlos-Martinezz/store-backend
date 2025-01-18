@@ -12,4 +12,6 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 
     List<Order> findByCustomerIdAndPaymentStatus(Long customerId, String paymentStatus);
 
+    List<Order> findByCustomerId(Long customerId);
+
 }

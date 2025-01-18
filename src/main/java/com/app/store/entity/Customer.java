@@ -1,11 +1,19 @@
 package com.app.store.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+/**
+ * Entity order
+ * Represents a customer in database
+ */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -30,6 +38,6 @@ public class Customer {
     /**
      * Customer full address
      */
-    private Double address;
+    private String address;
 
 }
