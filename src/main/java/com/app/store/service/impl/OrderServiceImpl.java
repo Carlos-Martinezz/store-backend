@@ -4,7 +4,7 @@ import com.app.store.constant.OrderStatus;
 import com.app.store.constant.PaymentStatus;
 import com.app.store.dto.CompleteOrderDTO;
 import com.app.store.dto.OrderDTO;
-import com.app.store.dto.OrderItem;
+import com.app.store.dto.OrderItemDTO;
 import com.app.store.entity.Order;
 import com.app.store.exception.TechnicalException;
 import com.app.store.repository.OrderRepository;
@@ -99,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
      * @param ids List of items
      * @return String joined by ,
      */
-    private String joinItemId(List<OrderItem> ids) {
+    private String joinItemId(List<OrderItemDTO> ids) {
         return ids.stream()
                 .map(item -> String.valueOf(item.getProductId()))
                 .collect(Collectors.joining(","));

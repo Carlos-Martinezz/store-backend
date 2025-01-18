@@ -41,6 +41,6 @@ public class OrderDTO {
      */
     @NotNull(message = "items field is required")
     @Valid
-    private List<OrderItem> items;
+    private List<OrderItemDTO> items;
 
 }
