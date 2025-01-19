@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "19517dc3-4035-4995-8579-2a0bf8384c1f",
+		"name": "BC Fake Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28754700"
+	},
+	"item": [
+		{
+			"name": "Get All Products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzcyNTgwNTIsImV4cCI6MTczNzI2MTY1Mn0.dl637KXiWO6aBFregi681JGFChcG5-C3y0OUVkK9mh0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/products/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Create Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/create/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"create",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Payment Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerId\": 3,\n  \"payAll\": true,\n  \"ordersId\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/payments/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"payments",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Orders By Customer Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzcyNTgwNTIsImV4cCI6MTczNzI2MTY1Mn0.dl637KXiWO6aBFregi681JGFChcG5-C3y0OUVkK9mh0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Create Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzcyNTcyNzQsImV4cCI6MTczNzI2MDg3NH0.FaNrBSJ_zlMeUtOYkRl1SYNVMmBTf6reXb1xoT3ytAA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cart/create/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cart",
+						"create",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Update Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzcyNTcyNzQsImV4cCI6MTczNzI2MDg3NH0.FaNrBSJ_zlMeUtOYkRl1SYNVMmBTf6reXb1xoT3ytAA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "{{$guid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"customerId\": 3,\n    \"items\": [\n        {\n            \"productId\": 100,\n            \"productName\": \"Pintura\",\n            \"quantity\": 1,\n            \"price\": 99,\n            \"cartId\": null\n        }\n    ],\n    \"updatedAt\": \"2025-01-18T18:39:20.408697\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cart/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cart",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Auth Sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"carlos@test.com\",\n    \"password\": \"12345\",\n    \"fullName\": \"Carlos Martinez\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Auth Log In",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"carlos@test.com\",\n    \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

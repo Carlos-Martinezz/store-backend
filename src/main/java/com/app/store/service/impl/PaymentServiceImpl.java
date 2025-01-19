@@ -101,7 +101,7 @@ public class PaymentServiceImpl implements PaymentService {
      */
     private void simulatePayment(Customer customer, double totalAmountDue) {
         //TODO: Build the request for the payment gateway
-        log.info("Your payment was made successfully. Customer: {}, Total Amount Due: {}", customer, totalAmountDue);
+        log.info("Payment was made successfully. Customer: {}, Total Amount Due: {}", customer, totalAmountDue);
     }
 
 }

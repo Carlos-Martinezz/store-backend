@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Order controller
- * Provides order management
+ * Product controller
+ * Provides product management
  */
 @RestController
 @RequestMapping("/api/v1/products")
