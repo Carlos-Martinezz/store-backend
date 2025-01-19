@@ -17,6 +17,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Cart service implementation
+ */
 @Service
 @AllArgsConstructor
 public class CartServiceImpl implements CartService {
@@ -33,6 +36,7 @@ public class CartServiceImpl implements CartService {
 
     /**
      * Create empty cart
+     * Allows you to create a new cart for a customer
      *
      * @param customerId A valida customer database id
      * @return Created cart
@@ -72,6 +76,7 @@ public class CartServiceImpl implements CartService {
 
     /**
      * Manage cart
+     * Allows you to interact with the shopping cart, modifying it on demand
      *
      * @param cart Complete cart object
      * @return Updated cart

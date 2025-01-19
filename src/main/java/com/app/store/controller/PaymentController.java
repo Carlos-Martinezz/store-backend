@@ -25,7 +25,7 @@ public class PaymentController {
     @PostMapping("/create")
     public ResponseEntity<Response<PaymentDetailDTO>> createPayment(@RequestHeader(required = true) String traceId,
                                                                   @RequestBody PaymentRequestDTO paymentRequestDTO) {
-        log.info("[createOrder] - traceId: {}", traceId);
+        log.info("[createPayment] traceId: {}", traceId);
         return ResponseEntity.ok(
                 Response.<PaymentDetailDTO>builder()
                         .data(this.paymentService.processPayment(paymentRequestDTO))

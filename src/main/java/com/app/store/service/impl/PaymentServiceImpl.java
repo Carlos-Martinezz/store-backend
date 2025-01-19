@@ -41,7 +41,7 @@ public class PaymentServiceImpl implements PaymentService {
     /**
      * Process and make a payment
      *
-     * @param paymentRequestDTO A valid customer info
+     * @param paymentRequestDTO Object with the necessary data to simulate the payment.
      * @return PaymentDetailDTO All payment details
      */
     @Override

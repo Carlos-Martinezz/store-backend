@@ -17,7 +17,7 @@ public interface OrderService {
      * @param order Represents the complete detail of an order.
      * @return OrderDTO An order processed
      */
-    CompleteOrderDTO processOrder(OrderDTO order);
+    CompleteOrderDTO processOrder(Long cartId);
 
     /**
      * Get orders by customer database id

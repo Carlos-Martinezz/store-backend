@@ -26,21 +26,21 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping("/create")
-    public ResponseEntity<Response<CompleteOrderDTO>> createOrder(@RequestHeader(required = true) String traceId, @Valid @RequestBody @Validated OrderDTO order) {
-        log.info("Order received: {}", order);
-        log.info("[createOrder] - traceId: {}", traceId);
+    @PostMapping("/create/{cartId}")
+    public ResponseEntity<Response<CompleteOrderDTO>> createOrder(@RequestHeader(required = true) String traceId, @PathVariable Long cartId) {
+        log.info("[createOrder] Cart received: {}", cartId);
+        log.info("[createOrder] traceId: {}", traceId);
         return ResponseEntity.ok(
                 Response.<CompleteOrderDTO>builder()
-                        .data(this.orderService.processOrder(order))
+                        .data(this.orderService.processOrder(cartId))
                         .build()
         );
     }
 
     @GetMapping("/{customerId}")
     public ResponseEntity<Response<List<CompleteOrderDTO>>> getOrdersByCustomerId(@RequestHeader(required = true) String traceId, @PathVariable Long customerId) {
-        log.info("customerId received: {}", customerId);
-        log.info("[createOrder] - traceId: {}", traceId);
+        log.info("[getOrdersByCustomerId] customerId received: {}", customerId);
+        log.info("[getOrdersByCustomerId] traceId: {}", traceId);
         return ResponseEntity.ok(
                 Response.<List<CompleteOrderDTO>>builder()
                         .data(this.orderService.getOrdersByCustomerId(customerId))

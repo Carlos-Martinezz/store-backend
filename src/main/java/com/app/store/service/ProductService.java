@@ -5,7 +5,7 @@ import com.app.store.dto.ProductDTO;
 import java.util.List;
 
 /**
- * Store service interface
+ * Product service interface
  * Definition or contract of the methods available for implementation.
  */
 public interface ProductService {

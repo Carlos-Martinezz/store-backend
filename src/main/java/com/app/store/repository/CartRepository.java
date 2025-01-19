@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Allows you to manage saved carts.
+ */
 @Repository
 public interface CartRepository extends CrudRepository<Cart, Long> {
 

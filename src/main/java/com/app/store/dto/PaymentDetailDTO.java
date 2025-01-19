@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * Simulated payment detail
+ */
 @Data
 @Builder
 public class PaymentDetailDTO {

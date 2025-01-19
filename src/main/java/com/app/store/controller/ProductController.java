@@ -27,7 +27,7 @@ public class ProductController {
 
     @GetMapping("/all")
     public ResponseEntity<Response<List<ProductDTO>>> getAllProducts(@RequestHeader(required = true) String traceId) {
-        log.info("[getAllProducts] - traceId: {}", traceId);
+        log.info("[getAllProducts] traceId: {}", traceId);
         return ResponseEntity.ok(
                 Response.<List<ProductDTO>>builder()
                         .data(this.storeService.getAll())

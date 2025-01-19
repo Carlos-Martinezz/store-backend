@@ -3,54 +3,76 @@ package com.app.store.service.impl;
 import com.app.store.constant.OrderStatus;
 import com.app.store.constant.PaymentStatus;
 import com.app.store.dto.CompleteOrderDTO;
-import com.app.store.dto.OrderDTO;
-import com.app.store.dto.OrderItemDTO;
+import com.app.store.entity.Cart;
+import com.app.store.entity.CartItem;
 import com.app.store.entity.Order;
 import com.app.store.exception.TechnicalException;
+import com.app.store.repository.CartRepository;
 import com.app.store.repository.OrderRepository;
 import com.app.store.service.OrderService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Order service implementation
+ */
 @Service
 @AllArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
+    /**
+     * Orders repository
+     */
     private final OrderRepository orderRepository;
+
+    /**
+     * Cart repository
+     */
+    private final CartRepository cartRepository;
 
     /**
      * Process and store an order
      *
-     * @param order Represents the complete detail of an order.
+     * @param cartId A valid cart
      * @return OrderDTO An order processed
      */
     @Override
-    public CompleteOrderDTO processOrder(OrderDTO order) {
+    public CompleteOrderDTO processOrder(Long cartId) {
 
-        if(order.getItems().size() < 1) {
-            throw new TechnicalException("We were unable to process your order. We did not find products in it.", HttpStatus.BAD_REQUEST.value());
+        Cart cartToPay = this.cartRepository.findById(cartId).orElse(null);
+
+        if(cartToPay == null) {
+            throw new TechnicalException("We did not find any cart with the provided id.", HttpStatus.NOT_FOUND.value());
+        }
+        log.info("[processOrder] Find cart: {}", cartToPay);
+
+        if(cartToPay.getItems().isEmpty()) {
+            throw new TechnicalException("Your cart is empty.", HttpStatus.BAD_REQUEST.value());
         }
 
-        double totalAmount = order.getItems().stream()
-                .mapToDouble(item -> item.getPrice())
+        double totalAmount = cartToPay.getItems().stream()
+                .mapToDouble(item -> item.getPrice() * item.getQuantity())
                 .sum();
 
         Order savedOrder = this.orderRepository.save(
                 Order.builder()
-                     .customerId(order.getCustomerId())
+                     .customerId(cartToPay.getCustomerId())
                      .totalAmount(totalAmount)
                      .status(OrderStatus.PROCESSED.name())
                      .paymentStatus(PaymentStatus.NO_PAID.name())
-                     .items(this.joinItemId(order.getItems()))
+                     .items(this.joinItemId(cartToPay.getItems()))
                      .build()
         );
 
         CompleteOrderDTO storedOrder;
         if(savedOrder != null) {
+            this.cartRepository.deleteById(cartToPay.getId());
             storedOrder = CompleteOrderDTO.builder()
                     .id(savedOrder.getId())
                     .customerId(savedOrder.getCustomerId())
@@ -99,7 +121,7 @@ public class OrderServiceImpl implements OrderService {
      * @param ids List of items
      * @return String joined by ,
      */
-    private String joinItemId(List<OrderItemDTO> ids) {
+    private String joinItemId(List<CartItem> ids) {
         return ids.stream()
                 .map(item -> String.valueOf(item.getProductId()))
                 .collect(Collectors.joining(","));

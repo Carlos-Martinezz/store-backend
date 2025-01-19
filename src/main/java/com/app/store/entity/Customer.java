@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 /**
  * Entity order
  * Represents a customer in database
+ * Simulate a external customer repository
  */
 @Data
 @Builder

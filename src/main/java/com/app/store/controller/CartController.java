@@ -26,14 +26,14 @@ public class CartController {
     @PostMapping("/create/{customerId}")
     public ResponseEntity<CartDTO> createCart(@RequestHeader(required = true) String traceId,
                                                         @PathVariable Long customerId) {
-        log.info("[createOrder] - traceId: {}", traceId);
+        log.info("[createCart] traceId: {}", traceId);
         return ResponseEntity.ok(this.cartService.create(customerId));
     }
 
     @PutMapping("/update")
     public ResponseEntity<CartDTO> updateCart(@RequestHeader(required = true) String traceId,
                                                         @RequestBody CartDTO cart) {
-        log.info("[createOrder] - traceId: {}", traceId);
+        log.info("[updateCart] - traceId: {}", traceId);
         return ResponseEntity.ok(this.cartService.manage(cart));
     }
 
