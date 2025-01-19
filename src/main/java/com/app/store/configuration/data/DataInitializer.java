@@ -46,15 +46,6 @@ public class DataInitializer implements CommandLineRunner {
                 .address("EL SALVADOR")
                 .build());
         log.info("Run: Insert 3 customers");
-        /**
-         * User test data
-         */
-        User testUser = new User();
-        testUser.setFullName("Carlos Martinez");
-        testUser.setEmail("carlos@test.com");
-        testUser.setPassword("12345");
-        //this.userRepository.save(testUser);
-        log.info("Run: Insert 1 user");
     }
 
 }

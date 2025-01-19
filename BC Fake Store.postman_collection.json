@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzcyNTgwNTIsImV4cCI6MTczNzI2MTY1Mn0.dl637KXiWO6aBFregi681JGFChcG5-C3y0OUVkK9mh0",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzczMTAxMTEsImV4cCI6MTczNzMxMzcxMX0.8Acxxza171OgnQXF9PYWksXL4zBxL7W_6eD6vMCAi4U",
 							"type": "string"
 						}
 					]
@@ -47,6 +47,16 @@
 		{
 			"name": "Post Create Order",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzczMTAxMTEsImV4cCI6MTczNzMxMzcxMX0.8Acxxza171OgnQXF9PYWksXL4zBxL7W_6eD6vMCAi4U",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -56,7 +66,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/orders/create/2",
+					"raw": "http://localhost:8080/api/v1/orders/create/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -67,7 +77,7 @@
 						"v1",
 						"orders",
 						"create",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -76,6 +86,16 @@
 		{
 			"name": "Post Payment Create",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzczMTAxMTEsImV4cCI6MTczNzMxMzcxMX0.8Acxxza171OgnQXF9PYWksXL4zBxL7W_6eD6vMCAi4U",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -118,7 +138,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzcyNTgwNTIsImV4cCI6MTczNzI2MTY1Mn0.dl637KXiWO6aBFregi681JGFChcG5-C3y0OUVkK9mh0",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzczMTAxMTEsImV4cCI6MTczNzMxMzcxMX0.8Acxxza171OgnQXF9PYWksXL4zBxL7W_6eD6vMCAi4U",
 							"type": "string"
 						}
 					]
@@ -156,7 +176,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzcyNTcyNzQsImV4cCI6MTczNzI2MDg3NH0.FaNrBSJ_zlMeUtOYkRl1SYNVMmBTf6reXb1xoT3ytAA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzczMTAxMTEsImV4cCI6MTczNzMxMzcxMX0.8Acxxza171OgnQXF9PYWksXL4zBxL7W_6eD6vMCAi4U",
 							"type": "string"
 						}
 					]
@@ -195,7 +215,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzcyNTcyNzQsImV4cCI6MTczNzI2MDg3NH0.FaNrBSJ_zlMeUtOYkRl1SYNVMmBTf6reXb1xoT3ytAA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3NAdGVzdC5jb20iLCJpYXQiOjE3MzczMTAxMTEsImV4cCI6MTczNzMxMzcxMX0.8Acxxza171OgnQXF9PYWksXL4zBxL7W_6eD6vMCAi4U",
 							"type": "string"
 						}
 					]
@@ -210,7 +230,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 2,\n    \"customerId\": 3,\n    \"items\": [\n        {\n            \"productId\": 100,\n            \"productName\": \"Pintura\",\n            \"quantity\": 1,\n            \"price\": 99,\n            \"cartId\": null\n        }\n    ],\n    \"updatedAt\": \"2025-01-18T18:39:20.408697\"\n}",
+					"raw": "{\n    \"id\": 1,\n    \"customerId\": 3,\n    \"items\": [\n        {\n            \"id\": 1,\n            \"productId\": 100,\n            \"productName\": \"Pintura\",\n            \"quantity\": 3,\n            \"price\": 100,\n            \"cartId\": null\n        }\n    ],\n    \"updatedAt\": \"2025-01-18T18:39:20.408697\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
