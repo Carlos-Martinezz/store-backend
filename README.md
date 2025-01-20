@@ -3,6 +3,11 @@
 ## Description
 API designed for purchases with shopping cart and payment simulation
 
+## Requirementes
+- OpenJDK 21 or similar
+- MAVEN 3.9.6 or superior
+The project uses an in-memory database (for testing purposes), in real environments, it is recommended to use persistent databases.
+
 ## Features
 - **Cart management**: Allows you to create and manage the shopping cart.
 - **Order management**: Allows you to create orders and change their status.
